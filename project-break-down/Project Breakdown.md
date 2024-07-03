@@ -17,3 +17,7 @@
 - A proper breakdown of the requirements
 - component tree and dataflow
 - proper use of components and custom hooks
+
+
+# Requirements Breakdown for this project
+ * 
