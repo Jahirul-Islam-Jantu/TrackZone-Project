@@ -20,4 +20,59 @@
 
 
 # Requirements Breakdown for this project
- * 
+ * We will have a local clock and a list of clocks.
+ * We will create the initial clock from the user's timezone.
+ * Clock object will look like: 
+   * Id
+   * Title
+   * Timezone
+     * type(UTC, GMT, EST, PST)
+     * offset
+   * events
+
+ * Event object will look like: 
+   * id
+   * clock id
+   * text
+   * timeZone
+   * StartTime
+   * EndTime
+   * status
+ 
+We will use a clock object for local clock, 
+we will use an array of clocks for other clocks.
+we will use event id to create event inside clock.
+
+* Clock features
+  * properties
+  * update clock
+  * delete clock
+  * calculate difference
+  * update events
+* Events features
+  * event properties
+  * create event 
+  * delete event 
+  * update event 
+  * filter events by clock
+  * get event by id
+  * get events by ids
+  
+
+
+
+
+# Breakdown questions for client
+-  Very fast time we have to read full requirements given from the client for the project
+-  first question for me that here client serve me about user, not for users. if only a single user use this project, then its ok. but if     many users use this then if i should create login, registration form for the users?
+    - client said this app will use without any login , registration form.
+-  second question from this requirements is, where to store app data?
+    - this app will be a serverless app, i can use local storage for data store.
+-  3rd question, should i set custom time for my default or time zone for this app?
+    - user will only set their default time by click time zone. i don’t have to create a customize time format for the default clock.
+-  4th question is if user entered into this app what should i show to user? should i show him a custom popup to create a base clock for him or should i show him a clock by default where user can modify his time zone?
+    - client have no choice for this option, client gave me the permission to do as i want.
+-  5th question is custom default clock can only be edited, others all clock’s edit, delete and event feature are same. should i have to make some different UI for default clock or the other’s clock?
+    - It depends on personal choice.
+-  client didn’t clear that if i have to add any event on default clock.
+    - event can be added
