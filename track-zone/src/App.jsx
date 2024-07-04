@@ -1,9 +1,12 @@
 import React from 'react';
+import LocalClock from "./components/localClock/LocalClock.jsx";
+import ClockList from "./components/clockList/ClockList.jsx";
 
 const App = () => {
     return (
         <div>
-            <h1>Track zone</h1>
+            <LocalClock/>
+            <ClockList/>
         </div>
     );
 };
