@@ -10,6 +10,7 @@ const App = () => {
     const {clock: pakistan} = useClock( "UTC", 5*60 )
     const {clock: edt } = useClock( "EDT" )
     const {clock: british} = useClock( "BST")
+    const {clock: mst} = useClock( "MST")
 
 
     console.log('local utc', local.date)
