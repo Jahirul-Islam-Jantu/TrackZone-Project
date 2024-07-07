@@ -35,8 +35,8 @@ const UseClock = ( timezone, offset = 0 ) => {
                     setLocalDate(newUtc)
                     }else{
                         const newUtc = addMinutes(utc, -localOffset)
-                        console.log(newUtc)
                         setLocalDate(newUtc)
+                        // TODO: find timezone
                     }
             }
 

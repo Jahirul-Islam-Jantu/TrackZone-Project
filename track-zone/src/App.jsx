@@ -4,13 +4,13 @@ import ClockList from "./components/clockList/ClockList.jsx";
 import useClock from "./hooks/useClock.jsx";
 
 const App = () => {
-const {date: localDate} = useClock()
+const {date: localDate, timezone, offset} = useClock()
 
 
 
     return (
         <div>
-            <LocalClock date={localDate} />
+            {localDate !== null && (<LocalClock date={localDate} timezone={timezone} offset={offset}  />)}
             <ClockList/>
         </div>
     );
