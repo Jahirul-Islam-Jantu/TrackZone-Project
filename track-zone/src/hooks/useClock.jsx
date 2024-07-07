@@ -2,17 +2,7 @@ import {useEffect, useState} from "react";
 import {addMinutes} from "date-fns";
 
 
-const init = {
-    id: '',
-    title: '',
-    timezone: {
-      type: '',
-      offset: '',
-    },
-    date_utc: null,
-    date: null,
 
-}
 
     const TIMEZONE_OFFSET = {
         PST: -7 * 60,
@@ -23,38 +13,41 @@ const init = {
 }
 
 const UseClock = ( timezone, offset = 0 ) => {
-    const [state, setState] = useState({...init})
+    const [localDate, setLocalDate] = useState(null)
+    const [localOffset, setLocalOffset] = useState(0)
     const [utc, setUTC] = useState(null)
 
     useEffect(() => {
         let d = new Date();
-        const localOffset = d.getTimezoneOffset();
-        d = addMinutes(d, localOffset);
+        const lo = d.getTimezoneOffset();
+        d = addMinutes(d, lo);
         setUTC(d);
+        setLocalOffset(lo)
     }, []);
         useEffect(()=>{
 
-            if (utc !== null && timezone){
+            if (utc !== null ){
+                    if(timezone){
 
                 offset = TIMEZONE_OFFSET[timezone] ?? offset
 
                 const newUtc = addMinutes(utc, offset)
-                    setState({
-                        ...state,
-                        date_utc: utc,
-                        date: newUtc
-                    })
-            }else{
-                setState({
-                   ...state,
-                    date_utc: utc,
-                    date: utc,
-                })
+                    setLocalDate(newUtc)
+                    }else{
+                        const newUtc = addMinutes(utc, -localOffset)
+                        console.log(newUtc)
+                        setLocalDate(newUtc)
+                    }
             }
+
         },[utc])
     return{
 
-        clock: state,
+        date: localDate,
+        dateUTC: utc,
+        offset,
+        timezone,
+        localOffset,
     }
 };
 
