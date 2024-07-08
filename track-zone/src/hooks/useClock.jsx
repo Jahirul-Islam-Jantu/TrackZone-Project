@@ -15,6 +15,7 @@ import {addMinutes} from "date-fns";
 const UseClock = ( timezone, offset = 0 ) => {
     const [localDate, setLocalDate] = useState(null)
     const [localOffset, setLocalOffset] = useState(0)
+    const [localTimezone, setLocalTimezone] = useState("")
     const [utc, setUTC] = useState(null)
 
     useEffect(() => {
@@ -35,7 +36,9 @@ const UseClock = ( timezone, offset = 0 ) => {
                     setLocalDate(newUtc)
                     }else{
                         const newUtc = addMinutes(utc, -localOffset)
+                        const dateStrArr = newUtc.toUTCString().split((" "))
                         setLocalDate(newUtc)
+                        setLocalTimezone(dateStrArr[dateStrArr.length - 1])
                         // TODO: find timezone
                     }
             }
@@ -48,6 +51,7 @@ const UseClock = ( timezone, offset = 0 ) => {
         offset,
         timezone,
         localOffset,
+        localTimezone,
     }
 };
 
