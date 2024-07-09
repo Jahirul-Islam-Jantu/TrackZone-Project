@@ -12,7 +12,7 @@ import {addMinutes} from "date-fns";
         MST: -6 *60,
 }
 
-const UseClock = ( timezone, offset = 0 ) => {
+const UseClock = ( timezone, offset ) => {
     const [localDate, setLocalDate] = useState(null)
     const [localOffset, setLocalOffset] = useState(0)
     const [localTimezone, setLocalTimezone] = useState("")
@@ -39,17 +39,16 @@ const UseClock = ( timezone, offset = 0 ) => {
                         const dateStrArr = newUtc.toUTCString().split((" "))
                         setLocalDate(newUtc)
                         setLocalTimezone(dateStrArr[dateStrArr.length - 1])
-                        // TODO: find timezone
                     }
             }
 
-        },[utc])
+        },[utc, timezone, offset])
     return{
 
         date: localDate,
         dateUTC: utc,
-        offset,
-        timezone,
+        offset: offset || -localOffset,
+        timezone: timezone || localTimezone,
         localOffset,
         localTimezone,
     }
