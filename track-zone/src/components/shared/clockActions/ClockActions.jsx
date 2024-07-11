@@ -11,12 +11,12 @@ const defaultOffset = [
     0, 1, 2, 3, 4, 5, 5.5, 6, 6.5, 7, 7.5, 8, 9
 ]
 
-const ClockActions = ({local = false, clock, updateClock}) => {
+const ClockActions = ({local = false, clock, updateClock, createClock}) => {
     const [isEdit, setIsEdit] = useState(false);
     const [isCreate, setIsCreate] = useState(false);
 
 const handleClock = (values) => {
-    console.log(values)
+    createClock(values)
 }
 
     return (
@@ -32,7 +32,7 @@ const handleClock = (values) => {
             {isCreate && (
             <>
                 <h3>Create Clock</h3>
-                <ClockForm  handleClock={handleClock}  />
+                <ClockForm  handleClock={handleClock} />
             </>
             )}
         </div>

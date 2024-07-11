@@ -3,6 +3,7 @@ import LocalClock from "./components/localClock/LocalClock.jsx";
 import ClockList from "./components/clockList/ClockList.jsx";
 import useClock from "./hooks/useClock.jsx";
 import ClockDisplay from "./components/shared/clockDisplay/ClockDisplay.jsx";
+import {generate} from "shortid";
 
 const App = () => {
 
@@ -16,6 +17,7 @@ const App = () => {
 
 
 const [localClock, setLocalClock] = useState({...LOCAL_CLOCK_INIT});
+    const [clocks, setClocks] = useState([])
 
     const updateLocalClock = (data) => {
         setLocalClock ({
@@ -23,12 +25,17 @@ const [localClock, setLocalClock] = useState({...LOCAL_CLOCK_INIT});
             ...data,
         })
     }
+    const createClock = (clock) => {
+        clock.id= generate();
+        setClocks([...clocks, clock]);
+    }
 
 
     return (
         <div>
-            <LocalClock clock={localClock} updateClock={updateLocalClock} />
-            <ClockList/>
+            <LocalClock clock={localClock} updateClock={updateLocalClock} createClock={createClock} />
+            <br/>
+            <ClockList clocks={clocks}/>
 
         </div>
     );
