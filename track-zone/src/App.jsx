@@ -37,13 +37,17 @@ const [localClock, setLocalClock] = useState({...LOCAL_CLOCK_INIT});
         })
         setClocks(updatedClocks);
     }
+    const deleteClock = (id) => {
+        const updatedClocks = clocks.filter((clock) => clock.id !== id)
+        setClocks(updatedClocks);
+    }
 
 
     return (
         <div>
             <LocalClock clock={localClock} updateClock={updateLocalClock} createClock={createClock} />
             <br/>
-            <ClockList clocks={clocks} updateClock={updateClock} />
+            <ClockList localClock={localClock.date} clocks={clocks} updateClock={updateClock} deleteClock={deleteClock}/>
 
         </div>
     );

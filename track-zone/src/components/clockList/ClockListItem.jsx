@@ -1,9 +1,10 @@
 import React from 'react';
+import {formatDistance} from "date-fns"
 import ClockDisplay from "../shared/clockDisplay/ClockDisplay.jsx";
 import useClock from "../../hooks/useClock.jsx";
 import ClockActions from "../shared/clockActions/ClockActions.jsx";
 
-const ClockListItem = ({clock, updateClock}) => {
+const ClockListItem = ({clock, updateClock, deleteClock, localClock}) => {
     const {date} = useClock(clock.timezone, clock.offset)
     if(!date) return null;
 
@@ -15,7 +16,8 @@ const ClockListItem = ({clock, updateClock}) => {
                 timezone={clock.timezone}
                 offset={clock.offset}
             />
-            <ClockActions clock={clock} updateClock={updateClock} />
+            <h3>{formatDistance( localClock, date)}</h3>
+            <ClockActions clock={clock} updateClock={updateClock} deleteClock={deleteClock} />
         </div>
     );
 };
