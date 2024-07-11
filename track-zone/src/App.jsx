@@ -29,13 +29,21 @@ const [localClock, setLocalClock] = useState({...LOCAL_CLOCK_INIT});
         clock.id= generate();
         setClocks([...clocks, clock]);
     }
+    const updateClock = (updatedClock) => {
+
+        const updatedClocks = clocks.map(clock => {
+            if (clock.id === updatedClock.id) return updatedClock;
+            return clock;
+        })
+        setClocks(updatedClocks);
+    }
 
 
     return (
         <div>
             <LocalClock clock={localClock} updateClock={updateLocalClock} createClock={createClock} />
             <br/>
-            <ClockList clocks={clocks}/>
+            <ClockList clocks={clocks} updateClock={updateClock} />
 
         </div>
     );
