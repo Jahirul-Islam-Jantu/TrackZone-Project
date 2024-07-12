@@ -3,11 +3,8 @@ import {generate} from "shortid";
 
 const UseEvents = () => {
     const [state, setState] = useState({})
-    const getEventByClockId = (clockId, isArray = false) => {
-
-        const events =  Object.keys(state).filter(item => item.startsWith(clockId))
-        if (!isArray) return events
-        return Object.values(events)
+    const getEventByClockId = (clockId) => {
+       return Object.keys(state).filter(item => item.startsWith(clockId))
     }
     const getEvents = (isArray = false) => {
         if (!isArray) return state
@@ -40,6 +37,7 @@ const UseEvents = () => {
         setState(events)
     }
     return {
+        events: state,
         getEventByClockId,
         getEvents,
         addEvent,
